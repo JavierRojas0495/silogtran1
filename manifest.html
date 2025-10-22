@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silogtran - Manifiesto</title>
+    <meta name="description" content="Gestión de manifiestos - Sistema integral de gestión logística">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="css/base.css?v=1.2">
+    <link rel="stylesheet" href="css/dashboard.css?v=1.2">
+    <style>
+        /* Override Bootstrap nav-tabs styles */
+        .nav-tabs {
+            border-bottom: 2px solid #e5e7eb !important;
+            background-color: #ffffff !important;
+            border-radius: 8px 8px 0 0 !important;
+            padding: 0.5rem 0.5rem 0 0.5rem !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+        
+        .nav-tabs .nav-link {
+            border: none !important;
+            border-bottom: 3px solid transparent !important;
+            color: #000000 !important;
+            font-weight: 600 !important;
+            padding: 0.75rem 1.5rem !important;
+            background-color: transparent !important;
+            border-radius: 6px 6px 0 0 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .nav-tabs .nav-link:hover {
+            border-color: transparent !important;
+            border-bottom-color: #143c62 !important;
+            color: #143c62 !important;
+            background-color: rgba(20, 60, 98, 0.1) !important;
+        }
+        
+        .nav-tabs .nav-link.active {
+            border-bottom-color: #143c62 !important;
+            color: #143c62 !important;
+            background-color: white !important;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1) !important;
+            font-weight: 700 !important;
+        }
+        
+        .nav-tabs .nav-link i {
+            color: #000000 !important;
+        }
+        
+        .nav-tabs .nav-link.active i {
+            color: #143c62 !important;
+        }
+        
+        .nav-tabs .nav-link:hover i {
+            color: #143c62 !important;
+        }
+        
+        .function-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .function-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+        }
+        
+        .function-card:hover .card-body {
+            background-color: #f8f9fa;
+        }
+        
+        .function-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .function-card:hover .function-icon {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top" style="height: 70px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1030">
+        <div class="container-fluid px-4">
+            <!-- Left side - Logo and Toggle -->
+            <div class="d-flex align-items-center">
+                <button class="btn btn-link p-0 me-3" id="sidebar-toggle" style="color: #6b7280">
+                    <i data-lucide="menu" id="sidebar-toggle-icon" style="width: 1.5rem; height: 1.5rem"></i>
+                </button>
+                <div class="d-flex align-items-center">
+                    <img src="public/img/corporativo/logo_repremundo.gif" alt="Repremundo" width="150" height="60" class="me-3">
+                    <div>
+                        <h5 class="mb-0 fw-bold" style="color: #000000">Repremundo</h5>
+                        <small class="text-muted">Silogtran</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side - User info and notifications -->
+            <div class="d-flex align-items-center gap-3">
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <button class="btn btn-link p-2 position-relative" type="button" data-bs-toggle="dropdown" style="color: #6b7280">
+                        <i data-lucide="bell" style="width: 1.5rem; height: 1.5rem"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem">4</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="min-width: 300px">
+                        <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><small>Se actualizó la Remesa 001234</small></a></li>
+                        <li><a class="dropdown-item" href="#"><small>Se creó el manifiesto 005678</small></a></li>
+                        <li><a class="dropdown-item" href="#"><small>Se confirmó el Manifiesto 009012</small></a></li>
+                        <li><a class="dropdown-item" href="#"><small>Se debe actualizar los documentos soportes 003456</small></a></li>
+                    </ul>
+                </div>
+
+                <!-- User Profile -->
+                <div class="dropdown">
+                    <button class="btn btn-link p-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" style="color: #000000; text-decoration: none; border-radius: 8px; transition: all 0.3s ease">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; background-color: #143c62 !important">
+                                <span class="text-white fw-bold" style="font-size: 0.8rem" id="user-initial">A</span>
+                            </div>
+                            <div class="text-start">
+                                <div class="fw-semibold" style="font-size: 0.9rem; line-height: 1.2" id="user-name">Admin</div>
+                                <div class="text-muted" style="font-size: 0.75rem; line-height: 1.2" id="user-cost-center">Centro Principal</div>
+                            </div>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i data-lucide="user" class="me-2" style="width: 1rem; height: 1rem"></i>Mi Perfil</a></li>
+                        <li><a class="dropdown-item" href="#"><i data-lucide="settings" class="me-2" style="width: 1rem; height: 1rem"></i>Configuración</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" onclick="logout()"><i data-lucide="log-out" class="me-2" style="width: 1rem; height: 1rem"></i>Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex" style="padding-top: 70px">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-custom sidebar-open position-fixed h-100 d-flex flex-column" style="background: linear-gradient(180deg, #143c62, #1e4a73, #143c62); color: #e2e8f0; transition: width 0.3s ease; z-index: 1000; top: 70px">
+            
+            <!-- Navigation -->
+            <div class="flex-grow-1 px-3 py-4 overflow-auto">
+                <div class="mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3 sidebar-section-title" style="color: #94a3b8; font-size: 0.75rem; letter-spacing: 0.1em">PANEL PRINCIPAL</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="dashboard.html" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="home" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Dashboard</span>
+                        </a>
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="historial" id="historial-link">
+                                <i data-lucide="clock" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Historial</span>
+                                <div class="ms-auto">
+                                    <span class="badge rounded-pill" style="background-color: #f59e0b; color: white; font-size: 0.7rem" id="historial-badge">5</span>
+                                    <i data-lucide="chevron-down" class="module-chevron ms-2" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-historial" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1" id="historial-items">
+                                    <!-- Los elementos del historial se cargarán aquí dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3 sidebar-section-title" style="color: #94a3b8; font-size: 0.75rem; letter-spacing: 0.1em">MÓDULOS</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <!-- Despacho -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="despacho">
+                                <i data-lucide="truck" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Despacho</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-despacho" style="display: block; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Agenda Comercial</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Atención Cliente</span>
+                                    </a>
+                                    <a href="manifest.html" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none active-nav-item" style="background-color: rgba(255,255,255,0.15); color: white; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem; color: white"></i>
+                                        <span>Manifiesto</span>
+                                        <div class="ms-auto">
+                                            <div class="rounded-circle bg-white" style="width: 6px; height: 6px"></div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Bloqueo Manifiesto</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Check List</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Comodato</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cotización</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cubicaje</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cumplimiento Manifiesto</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Entrega Contenedor</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Enturnamiento</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Otros módulos... (se pueden agregar más tarde) -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-3 py-3 border-top mt-auto" style="border-color: #475569; background-color: rgba(255,255,255,0.05); min-height: 135px;">
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Logo Container (Left Side) -->
+                    <div class="flex-shrink-0 footer-logo-container">
+                        <div class="bg-white rounded-3 p-2 d-flex align-items-center justify-content-center footer-logo" style="width: 60px; height: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.15)">
+                            <img src="public/img/corporativo/silogtran_logo.png" alt="Silogran" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain">
+                        </div>
+                    </div>
+                    
+                    <!-- Text Content (Right Side) -->
+                    <div class="flex-grow-1 footer-text">
+                        <div class="text-start">
+                            <p class="small mb-0 sidebar-text" style="color: #94a3b8; font-size: 0.7rem; line-height: 1.2">Desarrollado por</p>
+                            <p class="small mb-0 sidebar-text" style="color: #ffffff; font-size: 0.8rem; font-weight: 600; line-height: 1.2">Colombia Software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="flex-grow-1" style="margin-left: 18rem; transition: margin-left 0.3s ease; background-color: #f8f9fa; min-height: calc(100vh - 70px)">
+            <div class="p-4">
+                <!-- Navigation Tabs -->
+                <div class="mb-4">
+                    <ul class="nav nav-tabs" id="manifestTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="paginas-tab" data-bs-toggle="tab" data-bs-target="#paginas" type="button" role="tab" aria-controls="paginas" aria-selected="true">
+                                <i data-lucide="file-text" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
+                                Páginas
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="procedimientos-tab" data-bs-toggle="tab" data-bs-target="#procedimientos" type="button" role="tab" aria-controls="procedimientos" aria-selected="false">
+                                <i data-lucide="settings" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
+                                Procedimientos
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="informes-tab" data-bs-toggle="tab" data-bs-target="#informes" type="button" role="tab" aria-controls="informes" aria-selected="false">
+                                <i data-lucide="bar-chart-3" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
+                                Informes
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="manifestTabsContent">
+                    <!-- Páginas Tab -->
+                    <div class="tab-pane fade show active" id="paginas" role="tabpanel" aria-labelledby="paginas-tab">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <h2 class="fw-bold mb-1" style="color: #000000">Páginas</h2>
+                                <p class="text-muted mb-0">Navegación y páginas principales del sistema</p>
+                            </div>
+                        </div>
+
+                        <!-- Páginas Grid -->
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="navigateToPage('buscar')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                            <i data-lucide="search" style="width: 1.5rem; height: 1.5rem; color: #143c62"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Buscar</h5>
+                                        <p class="text-muted mb-0 small">Búsqueda avanzada de manifiestos y documentos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="navigateToPage('home')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(34, 197, 94, 0.1) !important">
+                                            <i data-lucide="home" style="width: 1.5rem; height: 1.5rem; color: #22c55e"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Home</h5>
+                                        <p class="text-muted mb-0 small">Página principal del dashboard</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Procedimientos Tab -->
+                    <div class="tab-pane fade" id="procedimientos" role="tabpanel" aria-labelledby="procedimientos-tab">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <h2 class="fw-bold mb-1" style="color: #000000">Procedimientos</h2>
+                                <p class="text-muted mb-0">Operaciones y procesos del sistema de manifiestos</p>
+                            </div>
+                        </div>
+
+                        <!-- Procedimientos Grid -->
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('actualizar-manifiesto')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(245, 158, 11, 0.1) !important">
+                                            <i data-lucide="edit" style="width: 1.5rem; height: 1.5rem; color: #f59e0b"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Actualizar Manifiesto</h5>
+                                        <p class="text-muted mb-0 small">Modificar información de manifiestos existentes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('actualizar-tiempos-remesa')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(59, 130, 246, 0.1) !important">
+                                            <i data-lucide="clock" style="width: 1.5rem; height: 1.5rem; color: #3b82f6"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Actualizar Tiempos Remesa</h5>
+                                        <p class="text-muted mb-0 small">Gestionar tiempos y fechas de remesas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('adicion-equipo')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                            <i data-lucide="truck" style="width: 1.5rem; height: 1.5rem; color: #143c62"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Adición Equipo</h5>
+                                        <p class="text-muted mb-0 small">Agregar nuevos equipos al sistema</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('adicion-remesa')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(34, 197, 94, 0.1) !important">
+                                            <i data-lucide="package" style="width: 1.5rem; height: 1.5rem; color: #22c55e"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Adición Remesa</h5>
+                                        <p class="text-muted mb-0 small">Crear nuevas remesas en el sistema</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('adicionar-anticipo-vacio')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(245, 158, 11, 0.1) !important">
+                                            <i data-lucide="dollar-sign" style="width: 1.5rem; height: 1.5rem; color: #f59e0b"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Adicionar Anticipo Vacío</h5>
+                                        <p class="text-muted mb-0 small">Crear anticipos sin contenido inicial</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('anulacion')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(239, 68, 68, 0.1) !important">
+                                            <i data-lucide="x-circle" style="width: 1.5rem; height: 1.5rem; color: #ef4444"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Anulación</h5>
+                                        <p class="text-muted mb-0 small">Anular documentos y operaciones</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('anulacion-anticipo')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(239, 68, 68, 0.1) !important">
+                                            <i data-lucide="ban" style="width: 1.5rem; height: 1.5rem; color: #ef4444"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Anulación Anticipo</h5>
+                                        <p class="text-muted mb-0 small">Cancelar anticipos existentes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('archivo-operaciones')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-secondary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(107, 114, 128, 0.1) !important">
+                                            <i data-lucide="archive" style="width: 1.5rem; height: 1.5rem; color: #6b7280"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Archivo Operaciones</h5>
+                                        <p class="text-muted mb-0 small">Gestionar archivo de operaciones</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('arreglo-impuesto')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(59, 130, 246, 0.1) !important">
+                                            <i data-lucide="calculator" style="width: 1.5rem; height: 1.5rem; color: #3b82f6"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Arreglo Impuesto</h5>
+                                        <p class="text-muted mb-0 small">Corregir cálculos de impuestos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('arreglo-impuesto-masivo')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(59, 130, 246, 0.1) !important">
+                                            <i data-lucide="layers" style="width: 1.5rem; height: 1.5rem; color: #3b82f6"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Arreglo Impuesto Masivo</h5>
+                                        <p class="text-muted mb-0 small">Corrección masiva de impuestos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="executeProcedure('borrador-equipo')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(245, 158, 11, 0.1) !important">
+                                            <i data-lucide="file-edit" style="width: 1.5rem; height: 1.5rem; color: #f59e0b"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Borrador Equipo</h5>
+                                        <p class="text-muted mb-0 small">Crear borradores de equipos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Informes Tab -->
+                    <div class="tab-pane fade" id="informes" role="tabpanel" aria-labelledby="informes-tab">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <h2 class="fw-bold mb-1" style="color: #000000">Informes</h2>
+                                <p class="text-muted mb-0">Reportes y documentos del sistema</p>
+                            </div>
+                        </div>
+
+                        <!-- Informes Grid -->
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('certificado-ingreso')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(34, 197, 94, 0.1) !important">
+                                            <i data-lucide="file-check" style="width: 1.5rem; height: 1.5rem; color: #22c55e"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Certificado Ingreso</h5>
+                                        <p class="text-muted mb-0 small">Generar certificados de ingreso</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('informe-aseguradora')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                            <i data-lucide="shield" style="width: 1.5rem; height: 1.5rem; color: #143c62"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Informe Aseguradora</h5>
+                                        <p class="text-muted mb-0 small">Reportes para compañías de seguros</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('informe-dian')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(245, 158, 11, 0.1) !important">
+                                            <i data-lucide="building" style="width: 1.5rem; height: 1.5rem; color: #f59e0b"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Informe DIAN</h5>
+                                        <p class="text-muted mb-0 small">Reportes para la DIAN</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('informe-errores-ministerio')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(239, 68, 68, 0.1) !important">
+                                            <i data-lucide="alert-triangle" style="width: 1.5rem; height: 1.5rem; color: #ef4444"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Informe Errores Ministerio</h5>
+                                        <p class="text-muted mb-0 small">Reporte de errores para el ministerio</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('informe-general-control')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(59, 130, 246, 0.1) !important">
+                                            <i data-lucide="clipboard-check" style="width: 1.5rem; height: 1.5rem; color: #3b82f6"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Informe General Control</h5>
+                                        <p class="text-muted mb-0 small">Reporte general de control</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('informe-general-gerencia')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                            <i data-lucide="users" style="width: 1.5rem; height: 1.5rem; color: #143c62"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Informe General Gerencia</h5>
+                                        <p class="text-muted mb-0 small">Reporte ejecutivo para gerencia</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('informe-generar-nuevo')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(34, 197, 94, 0.1) !important">
+                                            <i data-lucide="plus-circle" style="width: 1.5rem; height: 1.5rem; color: #22c55e"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Informe Generar Nuevo</h5>
+                                        <p class="text-muted mb-0 small">Crear nuevos informes personalizados</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card border-0 h-100 function-card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onclick="generateReport('informe-general-operacion')">
+                                    <div class="card-body p-4 text-center">
+                                        <div class="bg-secondary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 function-icon" style="width: 60px; height: 60px; background-color: rgba(107, 114, 128, 0.1) !important">
+                                            <i data-lucide="activity" style="width: 1.5rem; height: 1.5rem; color: #6b7280"></i>
+                                        </div>
+                                        <h5 class="fw-semibold mb-2" style="color: #000000">Informe General Operación</h5>
+                                        <p class="text-muted mb-0 small">Reporte general de operaciones</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters and Search -->
+                <div class="card border-0 mb-4 mt-4" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1)">
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold" style="color: #374151">Buscar</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="background-color: #f9fafb; border-color: #d1d5db">
+                                        <i data-lucide="search" style="width: 1rem; height: 1rem; color: #6b7280"></i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Número de manifiesto, cliente..." style="border-color: #d1d5db">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-semibold" style="color: #374151">Estado</label>
+                                <select class="form-select" style="border-color: #d1d5db">
+                                    <option value="">Todos</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="en_proceso">En Proceso</option>
+                                    <option value="completado">Completado</option>
+                                    <option value="cancelado">Cancelado</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-semibold" style="color: #374151">Fecha Desde</label>
+                                <input type="date" class="form-control" style="border-color: #d1d5db">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-semibold" style="color: #374151">Fecha Hasta</label>
+                                <input type="date" class="form-control" style="border-color: #d1d5db">
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button class="btn btn-primary me-2" style="background-color: #143c62; border-color: #143c62">
+                                    <i data-lucide="filter" style="width: 1rem; height: 1rem"></i>
+                                    Filtrar
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i data-lucide="refresh-cw" style="width: 1rem; height: 1rem"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                        <i data-lucide="file-text" style="width: 1.25rem; height: 1.25rem; color: #143c62"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">24</h2>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">Total Manifiestos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(245, 158, 11, 0.1) !important">
+                                        <i data-lucide="clock" style="width: 1.25rem; height: 1.25rem; color: #f59e0b"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">8</h2>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">Pendientes</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(59, 130, 246, 0.1) !important">
+                                        <i data-lucide="truck" style="width: 1.25rem; height: 1.25rem; color: #3b82f6"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">12</h2>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">En Proceso</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(34, 197, 94, 0.1) !important">
+                                        <i data-lucide="check-circle" style="width: 1.25rem; height: 1.25rem; color: #22c55e"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">4</h2>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">Completados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manifiestos Table -->
+                <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                    <div class="card-header bg-white border-bottom" style="border-color: #e5e7eb">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0 fw-semibold" style="color: #374151">Lista de Manifiestos</h5>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i data-lucide="grid-3x3" style="width: 1rem; height: 1rem"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i data-lucide="list" style="width: 1rem; height: 1rem"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead style="background-color: #f9fafb">
+                                    <tr>
+                                        <th class="border-0 fw-semibold" style="color: #374151; padding: 1rem">Número</th>
+                                        <th class="border-0 fw-semibold" style="color: #374151; padding: 1rem">Cliente</th>
+                                        <th class="border-0 fw-semibold" style="color: #374151; padding: 1rem">Fecha</th>
+                                        <th class="border-0 fw-semibold" style="color: #374151; padding: 1rem">Origen</th>
+                                        <th class="border-0 fw-semibold" style="color: #374151; padding: 1rem">Destino</th>
+                                        <th class="border-0 fw-semibold" style="color: #374151; padding: 1rem">Estado</th>
+                                        <th class="border-0 fw-semibold" style="color: #374151; padding: 1rem">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <span class="fw-semibold" style="color: #143c62">MF-001234</span>
+                                        </td>
+                                        <td class="border-0" style="padding: 1rem">Empresa ABC S.A.S</td>
+                                        <td class="border-0" style="padding: 1rem">15/01/2024</td>
+                                        <td class="border-0" style="padding: 1rem">Bogotá</td>
+                                        <td class="border-0" style="padding: 1rem">Medellín</td>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <span class="badge rounded-pill" style="background-color: #f59e0b; color: white">Pendiente</span>
+                                        </td>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <div class="d-flex gap-1">
+                                                <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                    <i data-lucide="eye" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success" title="Editar">
+                                                    <i data-lucide="edit" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                    <i data-lucide="trash-2" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <span class="fw-semibold" style="color: #143c62">MF-001235</span>
+                                        </td>
+                                        <td class="border-0" style="padding: 1rem">Transportes XYZ Ltda</td>
+                                        <td class="border-0" style="padding: 1rem">16/01/2024</td>
+                                        <td class="border-0" style="padding: 1rem">Cali</td>
+                                        <td class="border-0" style="padding: 1rem">Barranquilla</td>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <span class="badge rounded-pill" style="background-color: #3b82f6; color: white">En Proceso</span>
+                                        </td>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <div class="d-flex gap-1">
+                                                <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                    <i data-lucide="eye" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success" title="Editar">
+                                                    <i data-lucide="edit" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                    <i data-lucide="trash-2" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <span class="fw-semibold" style="color: #143c62">MF-001236</span>
+                                        </td>
+                                        <td class="border-0" style="padding: 1rem">Logística Nacional</td>
+                                        <td class="border-0" style="padding: 1rem">17/01/2024</td>
+                                        <td class="border-0" style="padding: 1rem">Pereira</td>
+                                        <td class="border-0" style="padding: 1rem">Bucaramanga</td>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <span class="badge rounded-pill" style="background-color: #22c55e; color: white">Completado</span>
+                                        </td>
+                                        <td class="border-0" style="padding: 1rem">
+                                            <div class="d-flex gap-1">
+                                                <button class="btn btn-sm btn-outline-primary" title="Ver">
+                                                    <i data-lucide="eye" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success" title="Editar">
+                                                    <i data-lucide="edit" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                                    <i data-lucide="trash-2" style="width: 1rem; height: 1rem"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top" style="border-color: #e5e7eb">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-muted">
+                                Mostrando 1-3 de 24 manifiestos
+                            </div>
+                            <nav>
+                                <ul class="pagination pagination-sm mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" style="color: #6b7280">Anterior</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#" style="background-color: #143c62; border-color: #143c62">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" style="color: #6b7280">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" style="color: #6b7280">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" style="color: #6b7280">Siguiente</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js?v=1.2"></script>
+    <script src="manifest.js?v=1.2"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+        
+        // Debug: Check if both systems are loaded
+        setTimeout(() => {
+            console.log('Manifest loaded. silogtranApp:', typeof silogtranApp);
+            console.log('Manifest loaded. manifestManager:', typeof manifestManager);
+            
+            // Test module toggle functionality
+            const testToggle = document.querySelector('[data-module="despacho"]');
+            if (testToggle) {
+                console.log('Found despacho toggle:', testToggle);
+                
+                // Test direct toggle
+                testToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Direct click on despacho toggle');
+                    const submodules = document.getElementById('submodules-despacho');
+                    const chevron = document.querySelector('[data-module="despacho"] .module-chevron');
+                    
+                    if (submodules && chevron) {
+                        const isVisible = submodules.style.display === 'block' || 
+                                         (submodules.style.display === '' && window.getComputedStyle(submodules).display !== 'none');
+                        
+                        console.log('Current visibility:', isVisible);
+                        
+                        if (isVisible) {
+                            submodules.style.display = 'none';
+                            chevron.style.transform = 'rotate(0deg)';
+                        } else {
+                            submodules.style.display = 'block';
+                            chevron.style.transform = 'rotate(180deg)';
+                        }
+                    }
+                });
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

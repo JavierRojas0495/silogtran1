@@ -295,6 +295,14 @@
                                         <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
                                         <span>Atención Cliente</span>
                                     </a>
+                                    <a href="manifest.html" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Manifiesto</span>
+                                    </a>
+                                    <a href="remesa.html" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Remesa</span>
+                                    </a>
                                     <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
                                         <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
                                         <span>Bloqueo Manifiesto</span>
@@ -722,6 +730,11 @@
         <!-- Main Content -->
         <div id="main-content" class="flex-grow-1" style="margin-left: 18rem; transition: margin-left 0.3s ease; background-color: #f8f9fa; min-height: calc(100vh - 70px)">
             <div class="p-4">
+                <!-- Test Navigation Button (temporary) -->
+                <div class="mb-3">
+                    <a href="manifest.html" class="btn btn-primary">🧪 Ir a Manifiesto (Prueba)</a>
+                </div>
+
                 <!-- Welcome Banner -->
                 <div class="mb-4 position-relative" style="background: linear-gradient(135deg, #143c62, #1e4a73); border-radius: 12px; padding: 2rem; overflow: hidden">
                     <!-- Background Icons -->
@@ -860,12 +873,61 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js?v=1.2"></script>
     <script src="dashboard.js?v=1.2"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
+        
+        // Debug: Check if both systems are loaded
+        setTimeout(() => {
+            console.log('Dashboard loaded. silogtranApp:', typeof silogtranApp);
+            console.log('Dashboard loaded. dashboardManager:', typeof dashboardManager);
+            
+            // Test module toggle functionality
+            const testToggle = document.querySelector('[data-module="basicos"]');
+            if (testToggle) {
+                console.log('Found basicos toggle:', testToggle);
+                
+                // Test direct toggle
+                testToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Direct click on basicos toggle');
+                    const submodules = document.getElementById('submodules-basicos');
+                    const chevron = document.querySelector('[data-module="basicos"] .module-chevron');
+                    
+                    if (submodules && chevron) {
+                        const isVisible = submodules.style.display === 'block' || 
+                                         (submodules.style.display === '' && window.getComputedStyle(submodules).display !== 'none');
+                        
+                        console.log('Current visibility:', isVisible);
+                        
+                        if (isVisible) {
+                            submodules.style.display = 'none';
+                            chevron.style.transform = 'rotate(0deg)';
+                        } else {
+                            submodules.style.display = 'block';
+                            chevron.style.transform = 'rotate(180deg)';
+                        }
+                    }
+                });
+            }
+            
+            // Test manifest link
+            const manifestLink = document.querySelector('a[href="manifest.html"]');
+            if (manifestLink) {
+                console.log('Found manifest link:', manifestLink);
+                manifestLink.addEventListener('click', function(e) {
+                    console.log('Manifest link clicked!');
+                    // Don't prevent default - let it navigate
+                });
+            } else {
+                console.log('Manifest link not found!');
+            }
+            }
+        }, 1000);
     </script>
 </body>
 </html>
