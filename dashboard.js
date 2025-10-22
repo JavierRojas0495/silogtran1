@@ -3,6 +3,101 @@
   let sidebarOpen = true
   let lucide // Declare the lucide variable
 
+  // Historial system
+  const HISTORIAL_KEY = 'user_historial'
+  const MAX_HISTORIAL_ITEMS = 5
+
+  // Get historial from localStorage
+  function getHistorial() {
+    try {
+      const historial = localStorage.getItem(HISTORIAL_KEY)
+      return historial ? JSON.parse(historial) : []
+    } catch (error) {
+      console.error('Error loading historial:', error)
+      return []
+    }
+  }
+
+  // Save historial to localStorage
+  function saveHistorial(historial) {
+    try {
+      localStorage.setItem(HISTORIAL_KEY, JSON.stringify(historial))
+    } catch (error) {
+      console.error('Error saving historial:', error)
+    }
+  }
+
+  // Add item to historial
+  function addToHistorial(module, option) {
+    const historial = getHistorial()
+    const newItem = {
+      module: module,
+      option: option,
+      timestamp: new Date().toISOString(),
+      id: Date.now()
+    }
+
+    // Remove existing item with same module and option
+    const filteredHistorial = historial.filter(item => 
+      !(item.module === module && item.option === option)
+    )
+
+    // Add new item at the beginning
+    filteredHistorial.unshift(newItem)
+
+    // Keep only the last MAX_HISTORIAL_ITEMS
+    const limitedHistorial = filteredHistorial.slice(0, MAX_HISTORIAL_ITEMS)
+
+    saveHistorial(limitedHistorial)
+    updateHistorialDisplay()
+  }
+
+  // Update historial display in sidebar
+  function updateHistorialDisplay() {
+    const historial = getHistorial()
+    const historialBadge = document.getElementById('historial-badge')
+    const historialItems = document.getElementById('historial-items')
+    
+    if (historialBadge) {
+      historialBadge.textContent = historial.length
+    }
+    
+    if (historialItems) {
+      historialItems.innerHTML = historial.map(item => `
+        <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none historial-item" 
+           style="color: #cbd5e1; font-size: 0.85rem" 
+           data-module="${item.module}" 
+           data-option="${item.option}">
+          <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+          <span>${item.module} → ${item.option}</span>
+        </a>
+      `).join('')
+      
+      // Add click events to historial items
+      setupHistorialItemClicks()
+    }
+  }
+
+  // Initialize historial with sample data
+  function initializeHistorial() {
+    const historial = getHistorial()
+    
+    // Only add sample data if historial is empty
+    if (historial.length === 0) {
+      const sampleData = [
+        { module: 'Despacho', option: 'Manifiesto', timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString(), id: Date.now() - 1000 * 60 * 30 },
+        { module: 'Básicos', option: 'Autorización', timestamp: new Date(Date.now() - 1000 * 60 * 60).toISOString(), id: Date.now() - 1000 * 60 * 60 },
+        { module: 'Maestros', option: 'Centro de costos', timestamp: new Date(Date.now() - 1000 * 60 * 90).toISOString(), id: Date.now() - 1000 * 60 * 90 },
+        { module: 'Calidad', option: 'Auditoría', timestamp: new Date(Date.now() - 1000 * 60 * 120).toISOString(), id: Date.now() - 1000 * 60 * 120 },
+        { module: 'Mantenimiento', option: 'Orden de trabajo', timestamp: new Date(Date.now() - 1000 * 60 * 150).toISOString(), id: Date.now() - 1000 * 60 * 150 }
+      ]
+      
+      saveHistorial(sampleData)
+    }
+    
+    updateHistorialDisplay()
+  }
+
   // Initialize Lucide icons
   function initIcons() {
     if (typeof lucide !== "undefined") {
@@ -111,10 +206,74 @@
     })
   }
 
+  // Setup historial click tracking for submodules
+  function setupHistorialTracking() {
+    // Track clicks on submodule links
+    const submoduleLinks = document.querySelectorAll('.submodules a')
+    submoduleLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        
+        // Get module name from parent container
+        const submodulesContainer = link.closest('.submodules')
+        const moduleContainer = submodulesContainer.closest('.module-container')
+        const moduleToggle = moduleContainer.querySelector('.module-toggle')
+        const moduleName = moduleToggle.getAttribute('data-module')
+        
+        // Get option name from link text
+        const optionName = link.textContent.trim()
+        
+        // Add to historial
+        addToHistorial(moduleName, optionName)
+        
+        // Show success message (optional)
+        console.log(`Added to historial: ${moduleName} -> ${optionName}`)
+      })
+    })
+  }
+
+  // Setup historial item clicks
+  function setupHistorialItemClicks() {
+    const historialItems = document.querySelectorAll('.historial-item')
+    historialItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault()
+        
+        const module = item.getAttribute('data-module')
+        const option = item.getAttribute('data-option')
+        
+        // Find and click the corresponding module and option
+        const moduleToggle = document.querySelector(`[data-module="${module.toLowerCase()}"]`)
+        if (moduleToggle) {
+          // Open the module if it's closed
+          const submodules = document.getElementById(`submodules-${module.toLowerCase()}`)
+          if (submodules && submodules.style.display === 'none') {
+            toggleModule(module.toLowerCase())
+          }
+          
+          // Find and click the option
+          setTimeout(() => {
+            const optionLink = Array.from(document.querySelectorAll('.submodules a')).find(link => 
+              link.textContent.trim() === option
+            )
+            if (optionLink) {
+              // Add to historial again (update timestamp)
+              addToHistorial(module, option)
+              console.log(`Navigated to: ${module} -> ${option}`)
+            }
+          }, 300)
+        }
+      })
+    })
+  }
+
   // Initialize page
   function init() {
     // Check if user is logged in
     loadUserData()
+
+    // Initialize historial
+    initializeHistorial()
 
     // Setup sidebar toggle
     const toggleBtn = document.getElementById("sidebar-toggle")
@@ -122,6 +281,7 @@
       toggleBtn.addEventListener("click", toggleSidebar)
     }
 
+    // El historial ahora funciona como un módulo normal, no necesita setup especial
 
     // Initialize icons
     initIcons()
@@ -129,6 +289,7 @@
     // Setup module toggles after icons are initialized
     setTimeout(() => {
       setupModuleToggles()
+      setupHistorialTracking()
     }, 200)
 
     // Re-initialize icons after a short delay

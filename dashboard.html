@@ -86,13 +86,21 @@
                                 <div class="rounded-circle bg-white" style="width: 6px; height: 6px"></div>
                             </div>
                         </a>
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="clock" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Historial</span>
-                            <div class="ms-auto">
-                                <span class="badge rounded-pill" style="background-color: #f59e0b; color: white; font-size: 0.7rem">2</span>
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="historial" id="historial-link">
+                                <i data-lucide="clock" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Historial</span>
+                                <div class="ms-auto">
+                                    <span class="badge rounded-pill" style="background-color: #f59e0b; color: white; font-size: 0.7rem" id="historial-badge">5</span>
+                                    <i data-lucide="chevron-down" class="module-chevron ms-2" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-historial" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1" id="historial-items">
+                                    <!-- Los elementos del historial se cargarán aquí dinámicamente -->
+                                </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
 
