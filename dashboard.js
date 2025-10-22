@@ -77,6 +77,40 @@
     window.location.href = "login.html"
   }
 
+  // Toggle module submodules
+  function toggleModule(moduleName) {
+    const submodules = document.getElementById(`submodules-${moduleName}`)
+    const chevron = document.querySelector(`[data-module="${moduleName}"] .module-chevron`)
+    
+    if (submodules && chevron) {
+      // Check if currently visible (either explicitly set to block or computed style is not none)
+      const isVisible = submodules.style.display === 'block' || 
+                       (submodules.style.display === '' && window.getComputedStyle(submodules).display !== 'none')
+      
+      if (isVisible) {
+        submodules.style.display = 'none'
+        chevron.style.transform = 'rotate(0deg)'
+      } else {
+        submodules.style.display = 'block'
+        chevron.style.transform = 'rotate(90deg)'
+      }
+    }
+  }
+
+  // Setup module toggles
+  function setupModuleToggles() {
+    const moduleToggles = document.querySelectorAll('.module-toggle')
+    console.log('Setting up', moduleToggles.length, 'module toggles')
+    moduleToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault()
+        const moduleName = toggle.getAttribute('data-module')
+        console.log('Clicked module:', moduleName)
+        toggleModule(moduleName)
+      })
+    })
+  }
+
   // Initialize page
   function init() {
     // Check if user is logged in
@@ -88,8 +122,14 @@
       toggleBtn.addEventListener("click", toggleSidebar)
     }
 
+
     // Initialize icons
     initIcons()
+
+    // Setup module toggles after icons are initialized
+    setTimeout(() => {
+      setupModuleToggles()
+    }, 200)
 
     // Re-initialize icons after a short delay
     setTimeout(initIcons, 100)

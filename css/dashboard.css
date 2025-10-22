@@ -55,7 +55,37 @@
 }
 
 /* When sidebar is closed - hide chevron icons */
-.sidebar-closed .nav-link i[data-lucide="chevron-right"] {
+.sidebar-closed .nav-link i[data-lucide="chevron-right"],
+.sidebar-closed .nav-link i[data-lucide="chevron-down"] {
+  display: none !important;
+}
+
+/* Module toggle styles */
+.module-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.module-chevron {
+  transition: transform 0.3s ease;
+}
+
+.submodules {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.submodules a {
+  transition: all 0.2s ease;
+}
+
+.submodules a:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  transform: translateX(4px);
+}
+
+/* When sidebar is closed - hide all submodules */
+.sidebar-closed .submodules {
   display: none !important;
 }
 

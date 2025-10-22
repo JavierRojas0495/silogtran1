@@ -99,55 +99,593 @@
                 <div class="mb-4">
                     <h6 class="text-uppercase fw-bold mb-3 sidebar-section-title" style="color: #94a3b8; font-size: 0.75rem; letter-spacing: 0.1em">MÓDULOS</h6>
                     <div class="d-flex flex-column gap-2">
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="database" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Básicos</span>
-                            <div class="ms-auto">
-                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                        <!-- Básicos -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="basicos">
+                                <i data-lucide="database" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Básicos</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-basicos" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Actividad Económica</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Analista</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Autorización</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Banco</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Barrio</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cargo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Carrocería</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Causa Módulo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Ciudad</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Clase Vehículo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Color</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Empaque</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Empresa</span>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="check-circle" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Calidad</span>
-                            <div class="ms-auto">
-                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                        </div>
+
+                        <!-- Calidad -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="calidad">
+                                <i data-lucide="check-circle" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Calidad</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-calidad" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Actividades Calidad</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Auditoría</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Hallazgo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Mapa Proceso</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Motivo Hallazgo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Plan Auditoría</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Programa Auditoría</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Proyecto</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Quejas Sugerencias</span>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="calculator" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Contable</span>
-                            <div class="ms-auto">
-                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                        </div>
+
+                        <!-- Contable -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="contable">
+                                <i data-lucide="calculator" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Contable</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-contable" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Activo Fijo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cierre Contable Sistema</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cierre Contable Mensual</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Clase Cuenta</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Configuración Cuenta Informe</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Consulta Contable</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cuenta</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Grupo Cuenta</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Medios Magnéticos</span>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="truck" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Despacho</span>
-                            <div class="ms-auto">
-                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                        </div>
+
+                        <!-- Despacho -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="despacho">
+                                <i data-lucide="truck" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Despacho</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-despacho" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Agenda Comercial</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Atención Cliente</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Bloqueo Manifiesto</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Check List</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Comodato</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cotización</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cubicaje</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cumplimiento Manifiesto</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Entrega Contenedor</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Enturnamiento</span>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="dollar-sign" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Financiero</span>
-                            <div class="ms-auto">
-                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                        </div>
+
+                        <!-- Financiero -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="financiero">
+                                <i data-lucide="dollar-sign" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Financiero</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-financiero" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Caja</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Caja General</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cartera</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cartera Transportador</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Causación</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cierre Módulo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Comprobante Egreso</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Comprobante Ingreso</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Comprobante Retención Recepción</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Factura</span>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="users" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Gerencia</span>
-                            <div class="ms-auto">
-                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                        </div>
+
+                        <!-- Gerencia -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="gerencia">
+                                <i data-lucide="users" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Gerencia</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-gerencia" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Informes</span>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
-                            <i data-lucide="trending-up" style="width: 1.25rem; height: 1.25rem"></i>
-                            <span class="fw-medium sidebar-text">Indicador</span>
-                            <div class="ms-auto">
-                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                        </div>
+
+                        <!-- Indicador -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="indicador">
+                                <i data-lucide="trending-up" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Indicador</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-indicador" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Ind</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Indicadores Cliente</span>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
+                        </div>
+
+                        <!-- Internacional -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="internacional">
+                                <i data-lucide="globe" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Internacional</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-internacional" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Carta Porte Carretera</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cumplido Carta Porte</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Declaración Tránsito Aduanero</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Manifiesto Carga Internacional</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inventario -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="inventario">
+                                <i data-lucide="package" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Inventario</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-inventario" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Artículo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Bodega</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Estructura</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Indicadores</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Inventario CEDI</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Movimiento</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Movimiento Inventario</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Solicitud Alistamiento</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Ubicación</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>VIN</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Zona</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Maestros -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="maestros">
+                                <i data-lucide="book-open" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Maestros</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-maestros" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Aduana</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Agencia</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>API</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Aseguradora</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Auditorio Envío Correo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Bloqueo Cliente</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Bloqueo Tercero</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Bloqueo Vehículo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Buque</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Capacitación</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Centro Costo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Clasificación Flota</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cliente</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Consignatario</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Contenedor</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mantenimiento -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="mantenimiento">
+                                <i data-lucide="wrench" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">Mantenimiento</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-mantenimiento" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Característica</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Clase Tarea</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Componente</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Concepto Costo Equipo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Costo Equipo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Costo Equipo Polote</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Costo Fijo Equipo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Orden Servicio</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Orden de Trabajo</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Sistema</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Tarea</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NIIF -->
+                        <div class="module-container">
+                            <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all module-toggle" style="color: #e2e8f0" data-module="niif">
+                                <i data-lucide="file-text" style="width: 1.25rem; height: 1.25rem"></i>
+                                <span class="fw-medium sidebar-text">NIIF</span>
+                                <div class="ms-auto">
+                                    <i data-lucide="chevron-down" class="module-chevron" style="width: 1rem; height: 1rem; transition: transform 0.3s ease"></i>
+                                </div>
+                            </a>
+                            <div class="submodules" id="submodules-niif" style="display: none; margin-left: 1rem; margin-top: 0.5rem;">
+                                <div class="d-flex flex-column gap-1">
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cierre Contable NIIF</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Clase Cuenta NIIF</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Concepto NIIF</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Configuración Cuenta Informe NIIF</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Consulta Contable NIIF</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Cuenta NIIF</span>
+                                    </a>
+                                    <a href="#" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                        <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
+                                        <span>Grupo Cuenta NIIF</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
