@@ -68,8 +68,10 @@
       if (username === "admin" && password === "admin") {
         // Save user data to localStorage
         localStorage.setItem("user", JSON.stringify({ username }))
-        // Redirect to cost center selection
-        window.location.href = "cost-center.html"
+        // Clear any previous 2FA verification
+        localStorage.removeItem("twoFactorVerified")
+        // Redirect to two-factor authentication
+        window.location.href = "two-factor-auth.html"
       } else {
         showError("Usuario o contraseña incorrectos")
       }

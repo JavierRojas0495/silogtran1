@@ -1,0 +1,263 @@
+/* Two Factor Authentication Page Styles */
+
+/* Import base styles */
+@import url('base.css');
+
+/* Custom styles for 2FA page */
+.two-factor-container {
+    min-height: 100vh;
+}
+
+/* Code input specific styles */
+#verification-code {
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border: 2px solid #d1d5db;
+    transition: all 0.3s ease;
+}
+
+#verification-code:focus {
+    border-color: #143c62;
+    box-shadow: 0 0 0 0.2rem rgba(20, 60, 98, 0.25);
+    outline: none;
+}
+
+#verification-code:valid {
+    border-color: #10b981;
+}
+
+/* Resend code button styles */
+#resend-code-btn {
+    transition: all 0.3s ease;
+}
+
+#resend-code-btn:hover {
+    color: #1d4ed8 !important;
+    text-decoration: underline !important;
+}
+
+#resend-code-btn:disabled {
+    color: #9ca3af !important;
+    cursor: not-allowed;
+}
+
+/* Countdown timer styles */
+#resend-timer {
+    animation: fadeIn 0.3s ease-in;
+}
+
+#countdown {
+    font-weight: 600;
+    color: #143c62;
+}
+
+/* Security info card */
+.security-info-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Success message styles */
+.alert-success {
+    background-color: #d1fae5;
+    border-color: #a7f3d0;
+    color: #065f46;
+}
+
+.alert-success i {
+    color: #059669;
+}
+
+/* Loading animation for verification */
+.verification-loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Code input animation */
+.code-input-container {
+    position: relative;
+}
+
+.code-input-container::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #143c62, #3b82f6);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.code-input-container:focus-within::after {
+    width: 100%;
+}
+
+/* Security features grid */
+.security-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.security-feature-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.security-feature-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #verification-code {
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+    }
+    
+    .security-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .security-feature-item {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #verification-code {
+        font-size: 0.9rem;
+        letter-spacing: 0.2rem;
+    }
+    
+    .security-features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply slide-in animation */
+.slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+/* Professional shadow utilities */
+.professional-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.professional-shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* System message card styles (inherited from base) */
+.system-message-card-enclosed {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.system-message-header-enclosed {
+    background: linear-gradient(135deg, #143c62 0%, #1e40af 100%);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.system-message-content-enclosed {
+    padding: 1.5rem;
+}
+
+/* Button hover effects */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Form validation styles */
+.form-control.is-valid {
+    border-color: #10b981;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2310b981' d='m2.3 6.73.94-.94 1.88-1.88'/%3e%3c/svg%3e");
+}
+
+.form-control.is-invalid {
+    border-color: #ef4444;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ef4444'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 4.6 1.4 1.4 1.4-1.4'/%3e%3c/svg%3e");
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    #verification-code {
+        border-width: 3px;
+    }
+    
+    .btn {
+        border-width: 2px;
+    }
+}

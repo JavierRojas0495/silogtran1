@@ -62,12 +62,20 @@
     }
   }
 
-  // Load user data
+  // Load user data and check authentication
   function loadUserData() {
     const userData = localStorage.getItem("user")
     if (!userData) {
       // Redirect to login if no user data
       window.location.href = "login.html"
+      return
+    }
+
+    // Check if 2FA is completed
+    const twoFactorVerified = localStorage.getItem("twoFactorVerified")
+    if (twoFactorVerified !== "true") {
+      // Redirect to 2FA if not verified
+      window.location.href = "two-factor-auth.html"
       return
     }
 
@@ -81,6 +89,20 @@
       console.error("Error loading user data:", error)
     }
   }
+
+  // Logout function
+  function logout() {
+    // Clear all authentication data
+    localStorage.removeItem("user")
+    localStorage.removeItem("twoFactorVerified")
+    localStorage.removeItem("costCenter")
+    
+    // Redirect to login
+    window.location.href = "login.html"
+  }
+
+  // Make logout function globally available
+  window.logout = logout
 
   // Initialize page
   function init() {
