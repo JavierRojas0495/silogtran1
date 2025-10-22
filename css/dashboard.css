@@ -1,0 +1,147 @@
+/* Dashboard Page Specific Styles */
+
+/* Sidebar Styles */
+.sidebar-custom {
+  background: linear-gradient(180deg, var(--sidebar-bg), #1e4a73, var(--sidebar-bg));
+  color: var(--sidebar-text);
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+}
+
+.sidebar-open {
+  width: 18rem !important;
+}
+
+.sidebar-closed {
+  width: 4rem !important;
+}
+
+/* When sidebar is closed - hide text elements */
+.sidebar-closed .sidebar-text,
+.sidebar-closed .sidebar-section-title,
+.sidebar-closed .sidebar-logo {
+  display: none !important;
+}
+
+/* When sidebar is closed - show only icons in nav links */
+.sidebar-closed .nav-link {
+  justify-content: center !important;
+  padding: 0.75rem !important;
+  gap: 0 !important;
+}
+
+/* When sidebar is closed - show main icons (home, clock, database, etc.) */
+.sidebar-closed .nav-link i[data-lucide="home"],
+.sidebar-closed .nav-link i[data-lucide="clock"],
+.sidebar-closed .nav-link i[data-lucide="database"],
+.sidebar-closed .nav-link i[data-lucide="check-circle"],
+.sidebar-closed .nav-link i[data-lucide="calculator"],
+.sidebar-closed .nav-link i[data-lucide="truck"],
+.sidebar-closed .nav-link i[data-lucide="dollar-sign"],
+.sidebar-closed .nav-link i[data-lucide="users"],
+.sidebar-closed .nav-link i[data-lucide="trending-up"] {
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* When sidebar is closed - hide text spans and badges */
+.sidebar-closed .nav-link span,
+.sidebar-closed .nav-link .badge,
+.sidebar-closed .nav-link .ms-auto {
+  display: none !important;
+}
+
+/* When sidebar is closed - hide chevron icons */
+.sidebar-closed .nav-link i[data-lucide="chevron-right"] {
+  display: none !important;
+}
+
+/* Footer styles when sidebar is collapsed */
+.sidebar-closed .footer-text {
+  display: none !important;
+}
+
+.sidebar-closed .footer-logo-container {
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.sidebar-closed .footer-logo {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.sidebar-custom .nav-link {
+  transition: all 0.3s ease;
+}
+
+.sidebar-custom .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.sidebar-custom .active-nav-item {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Stats Card Hover */
+.stats-card {
+  transition: all 0.3s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+  border: none;
+  box-shadow: var(--shadow-lg);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--background-light);
+  color: var(--text-color);
+}
+
+/* Progress Bar */
+.progress {
+  height: 0.5rem;
+  background-color: var(--background-light);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  transition: width 0.6s ease;
+  border-radius: 9999px;
+}
+
+/* Responsive Styles for Dashboard */
+@media (max-width: 768px) {
+  .sidebar-open {
+    width: 16rem !important;
+  }
+
+  .sidebar-closed {
+    width: 3.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar-open {
+    width: 14rem !important;
+  }
+
+  .sidebar-closed {
+    width: 3rem !important;
+  }
+}
