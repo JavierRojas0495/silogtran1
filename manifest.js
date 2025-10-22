@@ -12,12 +12,15 @@ class ManifestManager {
             dateFrom: '',
             dateTo: ''
         };
+        this.searchData = this.initializeSearchData();
+        this.currentSearchFilter = 'all';
         
         this.init();
     }
 
     init() {
         this.setupEventListeners();
+        this.setupSearchFunctionality();
         this.loadManifests();
         this.initializeSidebar();
     }
@@ -468,6 +471,251 @@ class ManifestManager {
         
         // TODO: Implement actual report generation
         // This could open report modals, trigger PDF generation, or redirect to report pages
+    }
+
+    // Search functionality
+    initializeSearchData() {
+        return {
+            pages: [
+                { name: 'Buscar', module: 'Búsqueda', description: 'Búsqueda avanzada de manifiestos y documentos' },
+                { name: 'Home', module: 'Principal', description: 'Página principal del dashboard' }
+            ],
+            procedures: [
+                { name: 'Actualizar Manifiesto', module: 'Manifiesto', description: 'Modificar información de manifiestos existentes' },
+                { name: 'Actualizar Tiempos Remesa', module: 'Remesa', description: 'Gestionar tiempos y fechas de remesas' },
+                { name: 'Adición Equipo', module: 'Equipo', description: 'Agregar nuevos equipos al sistema' },
+                { name: 'Adición Remesa', module: 'Remesa', description: 'Crear nuevas remesas en el sistema' },
+                { name: 'Adicionar Anticipo Vacío', module: 'Anticipo', description: 'Crear anticipos sin contenido inicial' },
+                { name: 'Anulación', module: 'General', description: 'Anular documentos y operaciones' },
+                { name: 'Anulación Anticipo', module: 'Anticipo', description: 'Cancelar anticipos existentes' },
+                { name: 'Archivo Operaciones', module: 'Archivo', description: 'Gestionar archivo de operaciones' },
+                { name: 'Arreglo Impuesto', module: 'Impuesto', description: 'Corregir cálculos de impuestos' },
+                { name: 'Arreglo Impuesto Masivo', module: 'Impuesto', description: 'Corrección masiva de impuestos' },
+                { name: 'Borrador Equipo', module: 'Equipo', description: 'Crear borradores de equipos' }
+            ],
+            reports: [
+                { name: 'Certificado Ingreso', module: 'Certificado', description: 'Generar certificados de ingreso' },
+                { name: 'Informe Aseguradora', module: 'Seguros', description: 'Reportes para compañías de seguros' },
+                { name: 'Informe DIAN', module: 'DIAN', description: 'Reportes para la DIAN' },
+                { name: 'Informe Errores Ministerio', module: 'Ministerio', description: 'Reporte de errores para el ministerio' },
+                { name: 'Informe General Control', module: 'Control', description: 'Reporte general de control' },
+                { name: 'Informe General Gerencia', module: 'Gerencia', description: 'Reporte ejecutivo para gerencia' },
+                { name: 'Informe Generar Nuevo', module: 'Personalizado', description: 'Crear nuevos informes personalizados' },
+                { name: 'Informe General Operación', module: 'Operación', description: 'Reporte general de operaciones' }
+            ]
+        };
+    }
+
+    setupSearchFunctionality() {
+        const searchInput = document.getElementById('manifest-search-input');
+        const clearButton = document.getElementById('manifest-clear-search');
+
+        if (searchInput) {
+            // Real-time search
+            searchInput.addEventListener('input', (e) => {
+                this.performSearch(e.target.value);
+            });
+
+            // Focus effects
+            searchInput.addEventListener('focus', () => {
+                searchInput.style.borderColor = '#143c62';
+                searchInput.style.boxShadow = '0 0 0 0.2rem rgba(20, 60, 98, 0.25)';
+            });
+
+            searchInput.addEventListener('blur', () => {
+                searchInput.style.borderColor = '#d1d5db';
+                searchInput.style.boxShadow = 'none';
+            });
+        }
+
+        // Clear search
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                this.clearSearch();
+            });
+        }
+
+        // Listen for tab changes
+        const tabButtons = document.querySelectorAll('#manifestTabs button[data-bs-toggle="tab"]');
+        tabButtons.forEach(button => {
+            button.addEventListener('shown.bs.tab', (e) => {
+                // Update search filter based on active tab
+                const targetTab = e.target.getAttribute('data-bs-target');
+                this.updateSearchFilterFromTab(targetTab);
+                
+                // Re-perform search if there's a current query
+                if (searchInput && searchInput.value.trim()) {
+                    this.performSearch(searchInput.value);
+                }
+            });
+        });
+    }
+
+    updateSearchFilterFromTab(targetTab) {
+        switch (targetTab) {
+            case '#paginas':
+                this.currentSearchFilter = 'pages';
+                break;
+            case '#procedimientos':
+                this.currentSearchFilter = 'procedures';
+                break;
+            case '#informes':
+                this.currentSearchFilter = 'reports';
+                break;
+            default:
+                this.currentSearchFilter = 'pages';
+        }
+    }
+
+    performSearch(query) {
+        if (!query || query.trim().length < 2) {
+            this.hideSearchResults();
+            return;
+        }
+
+        const results = this.searchInData(query.trim().toLowerCase());
+        this.displaySearchResults(results, query);
+    }
+
+    searchInData(query) {
+        let searchTargets = [];
+
+        switch (this.currentSearchFilter) {
+            case 'pages':
+                searchTargets = this.searchData.pages.map(item => ({ ...item, type: 'pages' }));
+                break;
+            case 'procedures':
+                searchTargets = this.searchData.procedures.map(item => ({ ...item, type: 'procedures' }));
+                break;
+            case 'reports':
+                searchTargets = this.searchData.reports.map(item => ({ ...item, type: 'reports' }));
+                break;
+            default:
+                searchTargets = this.searchData.pages.map(item => ({ ...item, type: 'pages' }));
+        }
+
+        return searchTargets.filter(item => 
+            item.name.toLowerCase().includes(query) ||
+            item.module.toLowerCase().includes(query) ||
+            item.description.toLowerCase().includes(query)
+        );
+    }
+
+    displaySearchResults(results, query) {
+        const resultsContainer = document.getElementById('manifest-search-results');
+        const resultsContent = document.getElementById('manifest-search-results-content');
+
+        if (!resultsContainer || !resultsContent) return;
+
+        if (results.length === 0) {
+            resultsContent.innerHTML = `
+                <div class="text-center py-4">
+                    <i data-lucide="search-x" style="width: 3rem; height: 3rem; color: #9ca3af; margin-bottom: 1rem"></i>
+                    <p class="text-muted mb-0">No se encontraron resultados para "${query}"</p>
+                    <small class="text-muted">Intenta con otros términos de búsqueda</small>
+                </div>
+            `;
+        } else {
+            const typeLabels = {
+                pages: 'Páginas',
+                procedures: 'Procedimientos', 
+                reports: 'Informes'
+            };
+
+            resultsContent.innerHTML = results.map(item => {
+                const type = item.type || this.currentSearchFilter;
+                const typeLabel = typeLabels[type] || 'Elemento';
+                
+                return `
+                    <div class="search-result-item p-3 mb-2 border rounded-3" style="border-color: #e5e7eb; transition: all 0.2s ease; cursor: pointer;" 
+                         onmouseover="this.style.borderColor='#143c62'; this.style.backgroundColor='#f8f9fa'" 
+                         onmouseout="this.style.borderColor='#e5e7eb'; this.style.backgroundColor='transparent'"
+                         onclick="manifestManager.handleSearchResultClick('${item.name}', '${item.module}', '${type}')">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div class="flex-grow-1">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="badge" style="background-color: #143c62; color: white; font-size: 0.7rem">${typeLabel}</span>
+                                    <h6 class="mb-0 fw-semibold" style="color: #1f2937">${this.highlightText(item.name, query)}</h6>
+                                </div>
+                                <p class="text-muted mb-1 small">Módulo: <strong>${item.module}</strong></p>
+                                <p class="text-muted mb-0 small">${item.description}</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <i data-lucide="arrow-right" style="width: 1rem; height: 1rem; color: #6b7280"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        resultsContainer.style.display = 'block';
+        this.initializeIcons();
+    }
+
+    highlightText(text, query) {
+        if (!query) return text;
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.replace(regex, '<mark style="background-color: #fef3c7; color: #92400e; padding: 0.1rem 0.2rem; border-radius: 0.25rem">$1</mark>');
+    }
+
+    hideSearchResults() {
+        const resultsContainer = document.getElementById('manifest-search-results');
+        if (resultsContainer) {
+            resultsContainer.style.display = 'none';
+        }
+    }
+
+    clearSearch() {
+        const searchInput = document.getElementById('manifest-search-input');
+        if (searchInput) {
+            searchInput.value = '';
+        }
+        this.hideSearchResults();
+    }
+
+    handleSearchResultClick(name, module, type) {
+        // Show success message
+        this.showSearchSuccessMessage(name, type);
+        
+        // Clear search
+        this.clearSearch();
+    }
+
+    showSearchSuccessMessage(name, type) {
+        const typeLabels = {
+            pages: 'Página',
+            procedures: 'Procedimiento',
+            reports: 'Informe'
+        };
+        
+        const typeLabel = typeLabels[type] || 'Elemento';
+        
+        // Create temporary success message
+        const successDiv = document.createElement('div');
+        successDiv.className = 'alert alert-success alert-dismissible fade show position-fixed';
+        successDiv.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 300px;';
+        successDiv.innerHTML = `
+            <i data-lucide="check-circle" style="width: 1.25rem; height: 1.25rem; margin-right: 0.5rem"></i>
+            <strong>${typeLabel} seleccionado:</strong> ${name}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        
+        document.body.appendChild(successDiv);
+        this.initializeIcons();
+        
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            if (successDiv.parentNode) {
+                successDiv.remove();
+            }
+        }, 3000);
+    }
+
+    initializeIcons() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }
 
     // Logout functionality
