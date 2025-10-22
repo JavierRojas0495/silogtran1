@@ -13,7 +13,7 @@
 }
 
 .sidebar-closed {
-  width: 4rem !important;
+  width: 5rem !important;
 }
 
 /* When sidebar is closed - hide text elements */
@@ -26,8 +26,9 @@
 /* When sidebar is closed - show only icons in nav links */
 .sidebar-closed .nav-link {
   justify-content: center !important;
-  padding: 0.75rem !important;
+  padding: 1rem 0.75rem !important;
   gap: 0 !important;
+  min-height: 3.5rem !important;
 }
 
 /* When sidebar is closed - show main icons (home, clock, database, etc.) */
@@ -42,6 +43,8 @@
 .sidebar-closed .nav-link i[data-lucide="trending-up"] {
   display: block !important;
   margin: 0 !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
 }
 
 /* When sidebar is closed - hide text spans and badges */
@@ -132,7 +135,7 @@
   }
 
   .sidebar-closed {
-    width: 3.5rem !important;
+    width: 4.5rem !important;
   }
 }
 
@@ -142,6 +145,6 @@
   }
 
   .sidebar-closed {
-    width: 3rem !important;
+    width: 4rem !important;
   }
 }

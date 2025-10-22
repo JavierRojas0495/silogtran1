@@ -28,7 +28,7 @@
     } else {
       sidebar.classList.remove("sidebar-open")
       sidebar.classList.add("sidebar-closed")
-      mainContent.style.marginLeft = "4rem"
+      mainContent.style.marginLeft = "5rem"
       if (toggleIcon) {
         toggleIcon.setAttribute("data-lucide", "menu")
       }
