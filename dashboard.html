@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silogtran - Dashboard</title>
+    <meta name="description" content="Sistema integral de gestión logística para el control total de tus operaciones">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top" style="height: 70px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1030">
+        <div class="container-fluid px-4">
+            <!-- Left side - Logo and Toggle -->
+            <div class="d-flex align-items-center">
+                <button class="btn btn-link p-0 me-3" id="sidebar-toggle" style="color: #6b7280">
+                    <i data-lucide="menu" id="sidebar-toggle-icon" style="width: 1.5rem; height: 1.5rem"></i>
+                </button>
+                <div class="d-flex align-items-center">
+                    <img src="public/img/corporativo/logo_repremundo.gif" alt="Repremundo" width="48" height="48" class="me-3">
+                    <div>
+                        <h5 class="mb-0 fw-bold" style="color: #000000">Repremundo</h5>
+                        <small class="text-muted">Silogtran</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side - User info and notifications -->
+            <div class="d-flex align-items-center gap-3">
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <button class="btn btn-link p-2 position-relative" type="button" data-bs-toggle="dropdown" style="color: #6b7280">
+                        <i data-lucide="bell" style="width: 1.5rem; height: 1.5rem"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem">4</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="min-width: 300px">
+                        <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><small>Se actualizó la Remesa 001234</small></a></li>
+                        <li><a class="dropdown-item" href="#"><small>Se creó el manifiesto 005678</small></a></li>
+                        <li><a class="dropdown-item" href="#"><small>Se confirmó el Manifiesto 009012</small></a></li>
+                        <li><a class="dropdown-item" href="#"><small>Se debe actualizar los documentos soportes 003456</small></a></li>
+                    </ul>
+                </div>
+
+                <!-- User Profile -->
+                <div class="dropdown">
+                    <button class="btn btn-link p-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" style="color: #000000; text-decoration: none; border-radius: 8px; transition: all 0.3s ease">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; background-color: #143c62 !important">
+                                <span class="text-white fw-bold" style="font-size: 0.8rem" id="user-initial">A</span>
+                            </div>
+                            <div class="text-start">
+                                <div class="fw-semibold" style="font-size: 0.9rem; line-height: 1.2" id="user-name">Admin</div>
+                                <div class="text-muted" style="font-size: 0.75rem; line-height: 1.2" id="user-cost-center">Centro Principal</div>
+                            </div>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i data-lucide="user" class="me-2" style="width: 1rem; height: 1rem"></i>Mi Perfil</a></li>
+                        <li><a class="dropdown-item" href="#"><i data-lucide="settings" class="me-2" style="width: 1rem; height: 1rem"></i>Configuración</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" onclick="logout()"><i data-lucide="log-out" class="me-2" style="width: 1rem; height: 1rem"></i>Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex" style="padding-top: 70px">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-custom sidebar-open position-fixed h-100 d-flex flex-column" style="background: linear-gradient(180deg, #143c62, #1e4a73, #143c62); color: #e2e8f0; transition: width 0.3s ease; z-index: 1000; top: 70px">
+            
+            <!-- Navigation -->
+            <div class="flex-grow-1 px-3 py-4 overflow-auto">
+                <div class="mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3 sidebar-section-title" style="color: #94a3b8; font-size: 0.75rem; letter-spacing: 0.1em">PANEL PRINCIPAL</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all active-nav-item" style="background-color: rgba(255,255,255,0.15); color: white">
+                            <i data-lucide="home" style="width: 1.25rem; height: 1.25rem; color: white"></i>
+                            <span class="fw-medium sidebar-text">Dashboard</span>
+                            <div class="ms-auto">
+                                <div class="rounded-circle bg-white" style="width: 6px; height: 6px"></div>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="clock" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Historial</span>
+                            <div class="ms-auto">
+                                <span class="badge rounded-pill" style="background-color: #f59e0b; color: white; font-size: 0.7rem">2</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3 sidebar-section-title" style="color: #94a3b8; font-size: 0.75rem; letter-spacing: 0.1em">MÓDULOS</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="database" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Básicos</span>
+                            <div class="ms-auto">
+                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="check-circle" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Calidad</span>
+                            <div class="ms-auto">
+                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="calculator" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Contable</span>
+                            <div class="ms-auto">
+                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="truck" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Despacho</span>
+                            <div class="ms-auto">
+                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="dollar-sign" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Financiero</span>
+                            <div class="ms-auto">
+                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="users" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Gerencia</span>
+                            <div class="ms-auto">
+                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="nav-link d-flex align-items-center gap-3 py-2 px-3 rounded-3 text-decoration-none transition-all" style="color: #e2e8f0">
+                            <i data-lucide="trending-up" style="width: 1.25rem; height: 1.25rem"></i>
+                            <span class="fw-medium sidebar-text">Indicador</span>
+                            <div class="ms-auto">
+                                <i data-lucide="chevron-right" style="width: 1rem; height: 1rem"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="px-3 py-3 border-top mt-auto" style="border-color: #475569; background-color: rgba(255,255,255,0.05); min-height: 135px;">
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Logo Container (Left Side) -->
+                    <div class="flex-shrink-0 footer-logo-container">
+                        <div class="bg-white rounded-3 p-2 d-flex align-items-center justify-content-center footer-logo" style="width: 60px; height: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.15)">
+                            <img src="public/img/corporativo/silogtran_logo.png" alt="Silogran" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain">
+                        </div>
+                    </div>
+                    
+                    <!-- Text Content (Right Side) -->
+                    <div class="flex-grow-1 footer-text">
+                        <div class="text-start">
+                            <p class="small mb-0 sidebar-text" style="color: #94a3b8; font-size: 0.7rem; line-height: 1.2">Desarrollado por</p>
+                            <p class="small mb-0 sidebar-text" style="color: #ffffff; font-size: 0.8rem; font-weight: 600; line-height: 1.2">Colombia Software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="flex-grow-1" style="margin-left: 18rem; transition: margin-left 0.3s ease; background-color: #f8f9fa; min-height: calc(100vh - 70px)">
+            <div class="p-4">
+                <!-- Welcome Banner -->
+                <div class="mb-4 position-relative" style="background: linear-gradient(135deg, #143c62, #1e4a73); border-radius: 12px; padding: 2rem; overflow: hidden">
+                    <!-- Background Icons -->
+                    <div class="position-absolute" style="top: 1rem; right: 1rem; opacity: 0.1">
+                        <i data-lucide="truck" style="width: 4rem; height: 4rem; color: white"></i>
+                    </div>
+                    <div class="position-absolute" style="bottom: 1rem; left: 50%; transform: translateX(-50%); opacity: 0.1">
+                        <i data-lucide="shield" style="width: 3rem; height: 3rem; color: white"></i>
+                    </div>
+                    
+                    <div class="position-relative">
+                        <p class="text-white mb-2" style="font-size: 0.9rem; opacity: 0.9">Usuario Autenticado</p>
+                        <h1 class="text-white fw-bold mb-0" style="font-size: 2.5rem" id="welcome-message">¡Bienvenido, Admin!</h1>
+                    </div>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                        <i data-lucide="file-text" style="width: 1.25rem; height: 1.25rem; color: #143c62"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">0</h2>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="text-success fw-semibold me-2" style="font-size: 0.9rem">+15%</span>
+                                </div>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">Manifiestos</p>
+                                <div class="progress mt-2" style="height: 4px">
+                                    <div class="progress-bar" style="width: 15%; background-color: #143c62"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(34, 197, 94, 0.1) !important">
+                                        <i data-lucide="list" style="width: 1.25rem; height: 1.25rem; color: #22c55e"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">0</h2>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="text-success fw-semibold me-2" style="font-size: 0.9rem">+8%</span>
+                                </div>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">Listar Manifiestos</p>
+                                <div class="progress mt-2" style="height: 4px">
+                                    <div class="progress-bar" style="width: 8%; background-color: #22c55e"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(245, 158, 11, 0.1) !important">
+                                        <i data-lucide="truck" style="width: 1.25rem; height: 1.25rem; color: #f59e0b"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">8</h2>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="text-success fw-semibold me-2" style="font-size: 0.9rem">+12%</span>
+                                </div>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">Solicitud de Transporte</p>
+                                <div class="progress mt-2" style="height: 4px">
+                                    <div class="progress-bar" style="width: 12%; background-color: #f59e0b"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-0 stats-card" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(59, 130, 246, 0.1) !important">
+                                        <i data-lucide="trending-up" style="width: 1.25rem; height: 1.25rem; color: #3b82f6"></i>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold mb-1" style="color: #000000; font-size: 2rem">95%</h2>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="text-danger fw-semibold me-2" style="font-size: 0.9rem">-0%</span>
+                                </div>
+                                <p class="text-muted mb-0" style="font-size: 0.9rem">Eficiencia</p>
+                                <div class="progress mt-2" style="height: 4px">
+                                    <div class="progress-bar" style="width: 95%; background-color: #143c62"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Cards -->
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                        <i data-lucide="bar-chart-3" style="width: 1.25rem; height: 1.25rem; color: #143c62"></i>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold mb-2" style="color: #000000">Resumen de Actividad</h5>
+                                <p class="text-muted mb-3" style="font-size: 0.9rem">Estado actual del sistema de manifiestos</p>
+                                <button class="btn btn-primary d-flex align-items-center gap-2" style="background-color: #143c62; border-color: #143c62">
+                                    <i data-lucide="refresh-cw" style="width: 1rem; height: 1rem"></i>
+                                    Actualizar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background-color: rgba(20, 60, 98, 0.1) !important">
+                                        <i data-lucide="bell" style="width: 1.25rem; height: 1.25rem; color: #143c62"></i>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold mb-2" style="color: #000000">Notificaciones</h5>
+                                <p class="text-muted mb-3" style="font-size: 0.9rem">Actividad reciente</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i data-lucide="file-text" style="width: 1rem; height: 1rem; color: #143c62"></i>
+                                    <span style="color: #000000; font-size: 0.9rem">Nuevo manifiesto creado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dashboard.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* Professional Corporate Styles for Silogtran System */
+
+:root {
+  --primary-color: #143c62;
+  --primary-dark: #0f2d47;
+  --primary-light: #1e4a73;
+  --secondary-color: #e94560;
+  --success-color: #22c55e;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+  --light-bg: #f8f9fa;
+  --white: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border-color: #d1d5db;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--light-bg);
+  line-height: 1.6;
+}
+
+/* Professional Shadows */
+.professional-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.professional-shadow-lg {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Form Inputs */
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(20, 60, 98, 0.15);
+}
+
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(20, 60, 98, 0.15);
+}
+
+/* Buttons */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Sidebar */
+.sidebar-custom {
+  width: 18rem;
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-custom.sidebar-collapsed {
+  width: 5rem;
+}
+
+.sidebar-custom.sidebar-collapsed .sidebar-text {
+  display: none;
+}
+
+.sidebar-custom.sidebar-collapsed .sidebar-section-title {
+  display: none;
+}
+
+.sidebar-custom.sidebar-collapsed .sidebar-logo {
+  display: none;
+}
+
+/* Navigation Links */
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white !important;
+}
+
+.active-nav-item {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white !important;
+}
+
+/* Stats Cards */
+.stats-card {
+  transition: all 0.3s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar-custom {
+    position: fixed;
+    left: -18rem;
+    z-index: 1040;
+  }
+
+  .sidebar-custom.sidebar-open {
+    left: 0;
+  }
+
+  #main-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* Utility Classes */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
