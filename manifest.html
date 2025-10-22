@@ -265,28 +265,61 @@
         <!-- Main Content -->
         <div id="main-content" class="flex-grow-1" style="margin-left: 18rem; transition: margin-left 0.3s ease; background-color: #f8f9fa; min-height: calc(100vh - 70px)">
             <div class="p-4">
-                <!-- Navigation Tabs -->
+                <!-- Navigation Tabs with Search -->
                 <div class="mb-4">
-                    <ul class="nav nav-tabs" id="manifestTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="paginas-tab" data-bs-toggle="tab" data-bs-target="#paginas" type="button" role="tab" aria-controls="paginas" aria-selected="true">
-                                <i data-lucide="file-text" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
-                                Páginas
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="procedimientos-tab" data-bs-toggle="tab" data-bs-target="#procedimientos" type="button" role="tab" aria-controls="procedimientos" aria-selected="false">
-                                <i data-lucide="settings" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
-                                Procedimientos
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="informes-tab" data-bs-toggle="tab" data-bs-target="#informes" type="button" role="tab" aria-controls="informes" aria-selected="false">
-                                <i data-lucide="bar-chart-3" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
-                                Informes
-                            </button>
-                        </li>
-                    </ul>
+                    <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <ul class="nav nav-tabs border-0" id="manifestTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="paginas-tab" data-bs-toggle="tab" data-bs-target="#paginas" type="button" role="tab" aria-controls="paginas" aria-selected="true">
+                                            <i data-lucide="file-text" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
+                                            Páginas
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="procedimientos-tab" data-bs-toggle="tab" data-bs-target="#procedimientos" type="button" role="tab" aria-controls="procedimientos" aria-selected="false">
+                                            <i data-lucide="settings" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
+                                            Procedimientos
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="informes-tab" data-bs-toggle="tab" data-bs-target="#informes" type="button" role="tab" aria-controls="informes" aria-selected="false">
+                                            <i data-lucide="bar-chart-3" style="width: 1rem; height: 1rem; margin-right: 0.5rem"></i>
+                                            Informes
+                                        </button>
+                                    </li>
+                                </ul>
+                                
+                                <!-- Search Input -->
+                                <div class="d-flex align-items-center">
+                                    <div class="position-relative">
+                                        <i data-lucide="search" class="position-absolute" style="left: 0.75rem; top: 50%; transform: translateY(-50%); width: 1rem; height: 1rem; color: #6b7280; z-index: 10"></i>
+                                        <input type="text" 
+                                               id="manifest-search-input" 
+                                               class="form-control ps-4" 
+                                               placeholder="Buscar..." 
+                                               style="border-radius: 8px; border: 1px solid #d1d5db; font-size: 0.9rem; padding: 0.5rem 0.75rem 0.5rem 2.5rem; width: 250px; transition: all 0.3s ease;"
+                                               autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Search Results -->
+                            <div id="manifest-search-results" class="mt-3" style="display: none;">
+                                <div class="border-top pt-3">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <h6 class="mb-0 text-muted">Resultados de búsqueda:</h6>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="manifest-clear-search">
+                                            <i data-lucide="x" style="width: 1rem; height: 1rem"></i>
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                    <div id="manifest-search-results-content"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Tab Content -->
@@ -300,39 +333,6 @@
                             </div>
                         </div>
 
-                        <!-- Search Section -->
-                        <div class="mb-4">
-                            <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6 class="mb-0 text-muted">Buscar en Páginas:</h6>
-                                        <div class="position-relative" style="width: 300px;">
-                                            <i data-lucide="search" class="position-absolute" style="left: 0.75rem; top: 50%; transform: translateY(-50%); width: 1rem; height: 1rem; color: #6b7280; z-index: 10"></i>
-                                            <input type="text" 
-                                                   id="manifest-search-input" 
-                                                   class="form-control ps-4" 
-                                                   placeholder="Buscar páginas..." 
-                                                   style="border-radius: 8px; border: 1px solid #d1d5db; font-size: 0.9rem; padding: 0.5rem 0.75rem 0.5rem 2.5rem; transition: all 0.3s ease;"
-                                                   autocomplete="off">
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Search Results -->
-                                    <div id="manifest-search-results" class="mt-3" style="display: none;">
-                                        <div class="border-top pt-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <h6 class="mb-0 text-muted">Resultados de búsqueda:</h6>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" id="manifest-clear-search">
-                                                    <i data-lucide="x" style="width: 1rem; height: 1rem"></i>
-                                                    Limpiar
-                                                </button>
-                                            </div>
-                                            <div id="manifest-search-results-content"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Páginas Grid -->
                         <div class="row g-3">
@@ -370,39 +370,6 @@
                             </div>
                         </div>
 
-                        <!-- Search Section -->
-                        <div class="mb-4">
-                            <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6 class="mb-0 text-muted">Buscar en Procedimientos:</h6>
-                                        <div class="position-relative" style="width: 300px;">
-                                            <i data-lucide="search" class="position-absolute" style="left: 0.75rem; top: 50%; transform: translateY(-50%); width: 1rem; height: 1rem; color: #6b7280; z-index: 10"></i>
-                                            <input type="text" 
-                                                   id="manifest-search-input" 
-                                                   class="form-control ps-4" 
-                                                   placeholder="Buscar procedimientos..." 
-                                                   style="border-radius: 8px; border: 1px solid #d1d5db; font-size: 0.9rem; padding: 0.5rem 0.75rem 0.5rem 2.5rem; transition: all 0.3s ease;"
-                                                   autocomplete="off">
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Search Results -->
-                                    <div id="manifest-search-results" class="mt-3" style="display: none;">
-                                        <div class="border-top pt-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <h6 class="mb-0 text-muted">Resultados de búsqueda:</h6>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" id="manifest-clear-search">
-                                                    <i data-lucide="x" style="width: 1rem; height: 1rem"></i>
-                                                    Limpiar
-                                                </button>
-                                            </div>
-                                            <div id="manifest-search-results-content"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Procedimientos Grid -->
                         <div class="row g-3">
@@ -539,39 +506,6 @@
                             </div>
                         </div>
 
-                        <!-- Search Section -->
-                        <div class="mb-4">
-                            <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0,0,0,0.1)">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <h6 class="mb-0 text-muted">Buscar en Informes:</h6>
-                                        <div class="position-relative" style="width: 300px;">
-                                            <i data-lucide="search" class="position-absolute" style="left: 0.75rem; top: 50%; transform: translateY(-50%); width: 1rem; height: 1rem; color: #6b7280; z-index: 10"></i>
-                                            <input type="text" 
-                                                   id="manifest-search-input" 
-                                                   class="form-control ps-4" 
-                                                   placeholder="Buscar informes..." 
-                                                   style="border-radius: 8px; border: 1px solid #d1d5db; font-size: 0.9rem; padding: 0.5rem 0.75rem 0.5rem 2.5rem; transition: all 0.3s ease;"
-                                                   autocomplete="off">
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Search Results -->
-                                    <div id="manifest-search-results" class="mt-3" style="display: none;">
-                                        <div class="border-top pt-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <h6 class="mb-0 text-muted">Resultados de búsqueda:</h6>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" id="manifest-clear-search">
-                                                    <i data-lucide="x" style="width: 1rem; height: 1rem"></i>
-                                                    Limpiar
-                                                </button>
-                                            </div>
-                                            <div id="manifest-search-results-content"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Informes Grid -->
                         <div class="row g-3">
