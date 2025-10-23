@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Rutas - Silogtran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .route-test {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .route-test a {
+            display: block;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .route-test a:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test de Rutas - Silogtran</h1>
+        
+        <div class="route-test">
+            <h3>📄 Páginas HTML</h3>
+            <a href="index.html" target="_blank">🏠 Index (Página Principal)</a>
+            <a href="vistas/login/login.html" target="_blank">🔐 Login</a>
+            <a href="vistas/dashboard/dashboard.html" target="_blank">📊 Dashboard</a>
+            <a href="vistas/cost-center/cost-center.html" target="_blank">💰 Cost Center</a>
+            <a href="vistas/remesa/remesa.html" target="_blank">📦 Remesa</a>
+            <a href="vistas/manifest/manifest.html" target="_blank">📋 Manifest</a>
+            <a href="vistas/forgot-password/forgot-password.html" target="_blank">🔑 Forgot Password</a>
+            <a href="vistas/two-factor-auth/two-factor-auth.html" target="_blank">🔒 Two Factor Auth</a>
+        </div>
+
+        <div class="route-test">
+            <h3>🎨 Archivos CSS</h3>
+            <a href="css/base.css" target="_blank">Base CSS</a>
+            <a href="css/login/login.css" target="_blank">Login CSS</a>
+            <a href="css/dashboard/dashboard.css" target="_blank">Dashboard CSS</a>
+            <a href="css/cost-center/cost-center.css" target="_blank">Cost Center CSS</a>
+            <a href="css/remesa/remesa.css" target="_blank">Remesa CSS</a>
+            <a href="css/manifest/manifest.css" target="_blank">Manifest CSS</a>
+            <a href="css/forgot-password/forgot-password.css" target="_blank">Forgot Password CSS</a>
+            <a href="css/two-factor-auth/two-factor-auth.css" target="_blank">Two Factor Auth CSS</a>
+        </div>
+
+        <div class="route-test">
+            <h3>⚡ Archivos JavaScript</h3>
+            <a href="js/app.js" target="_blank">App JS</a>
+            <a href="js/login/login.js" target="_blank">Login JS</a>
+            <a href="js/dashboard/dashboard.js" target="_blank">Dashboard JS</a>
+            <a href="js/cost-center/cost-center.js" target="_blank">Cost Center JS</a>
+            <a href="js/remesa/remesa.js" target="_blank">Remesa JS</a>
+            <a href="js/manifest/manifest.js" target="_blank">Manifest JS</a>
+            <a href="js/forgot-password/forgot-password.js" target="_blank">Forgot Password JS</a>
+            <a href="js/two-factor-auth/two-factor-auth.js" target="_blank">Two Factor Auth JS</a>
+        </div>
+
+        <div class="route-test">
+            <h3>🖼️ Imágenes</h3>
+            <a href="public/img/corporativo/logo_repremundo.gif" target="_blank">Logo Repremundo</a>
+            <a href="public/img/corporativo/silogtran_logo.png" target="_blank">Logo Silogtran</a>
+            <a href="public/img/corporativo/logos_icontec.png" target="_blank">Logo Icontec</a>
+        </div>
+
+        <div class="route-test">
+            <h3>🔗 Navegación entre Páginas</h3>
+            <p><strong>Flujo de navegación:</strong></p>
+            <ol>
+                <li>Index → Login (automático)</li>
+                <li>Login → Forgot Password</li>
+                <li>Forgot Password → Login (botón "Volver al Login")</li>
+                <li>Two Factor Auth → Login (botón "Volver al Login")</li>
+                <li>Dashboard → Manifest</li>
+                <li>Dashboard → Remesa</li>
+                <li>Manifest → Dashboard</li>
+                <li>Remesa → Dashboard</li>
+                <li>Remesa → Manifest</li>
+            </ol>
+        </div>
+
+        <div class="route-test">
+            <h3>🔐 Flujo de Autenticación</h3>
+            <p><strong>Para probar el flujo completo:</strong></p>
+            <ol>
+                <li>Ve a Login: <a href="vistas/login/login.html" target="_blank">vistas/login/login.html</a></li>
+                <li>Ingresa credenciales: <strong>admin / admin</strong></li>
+                <li>Te redirigirá automáticamente a Two Factor Auth</li>
+                <li>Ingresa cualquier código de 6 dígitos (ej: 123456)</li>
+                <li>Te redirigirá a Cost Center</li>
+                <li>Selecciona un centro de costos</li>
+                <li>Te redirigirá al Dashboard</li>
+            </ol>
+            <p><em>Nota: Este es un flujo simulado para demostración.</em></p>
+        </div>
+    </div>
+</body>
+</html>

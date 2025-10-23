@@ -71,7 +71,7 @@
         // Clear any previous 2FA verification
         localStorage.removeItem("twoFactorVerified")
         // Redirect to two-factor authentication
-        window.location.href = "two-factor-auth.html"
+        window.location.href = "../two-factor-auth/two-factor-auth.html"
       } else {
         showError("Usuario o contraseña incorrectos")
       }

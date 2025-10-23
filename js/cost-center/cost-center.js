@@ -53,7 +53,7 @@
       localStorage.setItem("costCenter", centerName)
 
       // Redirect to dashboard
-      window.location.href = "dashboard.html"
+      window.location.href = "../dashboard/dashboard.html"
     } catch (error) {
       console.error("Error selecting cost center:", error)
       alert("Error al seleccionar el centro de costos")
@@ -67,7 +67,7 @@
     const userData = localStorage.getItem("user")
     if (!userData) {
       // Redirect to login if no user data
-      window.location.href = "login.html"
+      window.location.href = "../login/login.html"
       return
     }
 
@@ -75,7 +75,7 @@
     const twoFactorVerified = localStorage.getItem("twoFactorVerified")
     if (twoFactorVerified !== "true") {
       // Redirect to 2FA if not verified
-      window.location.href = "two-factor-auth.html"
+      window.location.href = "../two-factor-auth/two-factor-auth.html"
       return
     }
 
@@ -98,7 +98,7 @@
     localStorage.removeItem("costCenter")
     
     // Redirect to login
-    window.location.href = "login.html"
+    window.location.href = "../login/login.html"
   }
 
   // Make logout function globally available

@@ -1,0 +1,68 @@
+/* Remesa CSS - Estilos específicos para el módulo de remesa */
+
+/* Estilos básicos para el módulo de remesa */
+.remesa-container {
+    padding: 1rem;
+}
+
+.remesa-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.remesa-form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.remesa-table {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.remesa-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.remesa-status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.remesa-status.pendiente {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.remesa-status.procesada {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.remesa-status.cancelada {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .remesa-container {
+        padding: 0.5rem;
+    }
+    
+    .remesa-actions {
+        flex-direction: column;
+    }
+}

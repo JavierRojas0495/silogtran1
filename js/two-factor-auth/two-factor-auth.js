@@ -186,7 +186,7 @@
         
         // Redirect to cost center selection after a short delay
         setTimeout(() => {
-          window.location.href = "cost-center.html"
+          window.location.href = "../cost-center/cost-center.html"
         }, 1500)
       } else {
         showError("Código de verificación incorrecto")
@@ -219,14 +219,14 @@
     const user = localStorage.getItem("user")
     if (!user) {
       // Redirect to login if no user data
-      window.location.href = "login.html"
+      window.location.href = "../login/login.html"
       return
     }
 
     const twoFactorVerified = localStorage.getItem("twoFactorVerified")
     if (twoFactorVerified === "true") {
       // Already verified, redirect to cost center
-      window.location.href = "cost-center.html"
+      window.location.href = "../cost-center/cost-center.html"
       return
     }
   }

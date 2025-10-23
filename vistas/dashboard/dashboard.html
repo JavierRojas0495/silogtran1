@@ -7,8 +7,8 @@
     <meta name="description" content="Sistema integral de gestión logística para el control total de tus operaciones">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link rel="stylesheet" href="css/base.css?v=1.2">
-    <link rel="stylesheet" href="css/dashboard.css?v=1.2">
+    <link rel="stylesheet" href="../../css/base.css?v=1.2">
+    <link rel="stylesheet" href="../../css/dashboard/dashboard.css?v=1.2">
 </head>
 <body>
     <!-- Navbar -->
@@ -20,7 +20,7 @@
                     <i data-lucide="menu" id="sidebar-toggle-icon" style="width: 1.5rem; height: 1.5rem"></i>
                 </button>
                 <div class="d-flex align-items-center">
-                    <img src="public/img/corporativo/logo_repremundo.gif" alt="Repremundo" width="150" height="60" class="me-3">
+                    <img src="../../public/img/corporativo/logo_repremundo.gif" alt="Repremundo" width="150" height="60" class="me-3">
                     <div>
                         <h5 class="mb-0 fw-bold" style="color: #000000">Repremundo</h5>
                         <small class="text-muted">Silogtran</small>
@@ -295,11 +295,11 @@
                                         <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
                                         <span>Atención Cliente</span>
                                     </a>
-                                    <a href="manifest.html" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                    <a href="../manifest/manifest.html" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
                                         <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
                                         <span>Manifiesto</span>
                                     </a>
-                                    <a href="remesa.html" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
+                                    <a href="../remesa/remesa.html" class="nav-link d-flex align-items-center gap-2 py-1 px-2 rounded-2 text-decoration-none" style="color: #cbd5e1; font-size: 0.85rem">
                                         <i data-lucide="circle" style="width: 0.5rem; height: 0.5rem"></i>
                                         <span>Remesa</span>
                                     </a>
@@ -712,7 +712,7 @@
                     <!-- Logo Container (Left Side) -->
                     <div class="flex-shrink-0 footer-logo-container">
                         <div class="bg-white rounded-3 p-2 d-flex align-items-center justify-content-center footer-logo" style="width: 60px; height: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.15)">
-                            <img src="public/img/corporativo/silogtran_logo.png" alt="Silogran" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain">
+                            <img src="../../public/img/corporativo/silogtran_logo.png" alt="Silogran" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain">
                         </div>
                     </div>
                     
@@ -732,7 +732,7 @@
             <div class="p-4">
                 <!-- Test Navigation Button (temporary) -->
                 <div class="mb-3">
-                    <a href="manifest.html" class="btn btn-primary">🧪 Ir a Manifiesto (Prueba)</a>
+                    <a href="../manifest/manifest.html" class="btn btn-primary">🧪 Ir a Manifiesto (Prueba)</a>
                 </div>
 
                 <!-- Welcome Banner -->
@@ -874,8 +874,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/app.js?v=1.2"></script>
-    <script src="dashboard.js?v=1.2"></script>
+    <script src="../../js/app.js?v=1.2"></script>
+    <script src="../../js/dashboard/dashboard.js?v=1.2"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') {
@@ -917,7 +917,7 @@
             }
             
             // Test manifest link
-            const manifestLink = document.querySelector('a[href="manifest.html"]');
+            const manifestLink = document.querySelector('a[href="../manifest/manifest.html"]');
             if (manifestLink) {
                 console.log('Found manifest link:', manifestLink);
                 manifestLink.addEventListener('click', function(e) {
