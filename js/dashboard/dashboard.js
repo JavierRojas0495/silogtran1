@@ -269,7 +269,7 @@ class DashboardManager {
   logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("costCenter");
-    window.location.href = "login.html";
+    window.location.href = "../login/login.html";
   }
 }
 

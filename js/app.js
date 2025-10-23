@@ -273,7 +273,7 @@ class SilogtranApp {
             sessionStorage.clear();
             
             // Redirect to login
-            window.location.href = 'login.html';
+            window.location.href = 'vistas/login/login.html';
         }
     }
 

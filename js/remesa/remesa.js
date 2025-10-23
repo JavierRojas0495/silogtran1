@@ -670,7 +670,7 @@ class RemesaManager {
             localStorage.removeItem('userData');
             this.showToast('Cerrando sesión...', 'info');
             setTimeout(() => {
-                window.location.href = 'login.html';
+                window.location.href = '../login/login.html';
             }, 1000);
         }
     }

@@ -726,7 +726,7 @@ class ManifestManager {
             sessionStorage.clear();
             
             // Redirect to login
-            window.location.href = 'login.html';
+            window.location.href = '../login/login.html';
         }
     }
 }
